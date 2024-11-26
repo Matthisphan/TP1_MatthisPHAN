@@ -1,32 +1,42 @@
 App\Entity\Media:
     media (template):
-        shortDescription: 'short desc <current()>'
-        longDescription: 'long desc <current()>'
-        releaseDate: "<dateTimeBetween('-1 week', '+1 week')>"
-        cover_image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNCVtOsNu4Q1d09DbBFYTO83ZYSOMJs_2cRg&s'
-        categories:
-            - '@category_action'
-            - '@category_adventure'
-        languages:
-            - '@language_fr'
-            - '@language_en'
+        title: 'Media <current()>'
+        shortDescription: 'short description'
+        longDescription: '<realText()>'
+        releaseDate: '<datetime()>'
+        coverImage: 'https://picsum.photos/400/550?random=<numberBetween(1, 100)>'
 
 App\Entity\Movie:
-    movie{1..50} (extends media) :
-        title: 'Film <current()> - <name()>'
+    media_movie_{1..50} (extends media):
+        title: 'Movie <current()>'
 
 App\Entity\Serie:
-    serie{1..50} (extends media):
-        title: 'Series <current()> - <name()>'
+    media_serie_{1..50} (extends media):
+        title: 'Serie <current()>'
+
 
 App\Entity\Season:
-    season{1..50}:
-        number: <numberBetween(1, 10)>
-        serie: '@serie*'
+    season_1_{@media_serie*}:
+        number: '<numberBetween(1, 10)>'
+        serie: '<current()>'
+    season_2_{@media_serie*}:
+        number: '<numberBetween(1, 10)>'
+        serie: '<current()>'
+    season_3_{@media_serie*}:
+        number: '<numberBetween(1, 10)>'
+        serie: '<current()>'
 
 App\Entity\Episode:
-    episode{1..50}:
-        title: '<name()>'
-        duration: <numberBetween(30, 120)>
-        released_at: "<dateTimeBetween('-1 week', '+1 week')>"
-        season: '@season*'
+    episode_{1..500}:
+        title: '<sentence()>'
+        duration: '<numberBetween(45, 90)>'
+        releasedAt: "<dateTimeBetween('-1 week', '+1 week')>"
+        season: '@season_*'
+
+
+App\Entity\WatchHistory:
+    watch_history_{1..500}:
+        lastWatchedAt: "<dateTimeBetween('-1 week', '+1 week')>"
+        numberOfViews: '<numberBetween(1, 100)>'
+        watcher: '@user_*'
+        media: '@media_*'

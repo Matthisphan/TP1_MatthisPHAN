@@ -46,7 +46,7 @@ class Serie extends Media
     public function removeSeason(Season $season): static
     {
         if ($this->seasons->removeElement($season)) {
-            
+            // set the owning side to null (unless already changed)
             if ($season->getSerie() === $this) {
                 $season->setSerie(null);
             }

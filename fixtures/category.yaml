@@ -5,3 +5,18 @@ App\Entity\Category:
     category_adventure:
       name: 'adventure'
       label: 'Adventure'
+    category_comedy:
+        name: 'comedy'
+        label: 'Comedy'
+    category_drama:
+        name: 'drama'
+        label: 'Drama'
+    category_fantasy:
+        name: 'fantasy'
+        label: 'Fantasy'
+    category_horror:
+        name: 'horror'
+        label: 'Horror'
+    category_romance:
+        name: 'romance'
+        label: 'Romance'

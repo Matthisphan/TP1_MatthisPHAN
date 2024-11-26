@@ -71,7 +71,7 @@ class Season
     public function removeEpisode(Episode $episode): static
     {
         if ($this->episodes->removeElement($episode)) {
-           
+            // set the owning side to null (unless already changed)
             if ($episode->getSeason() === $this) {
                 $episode->setSeason(null);
             }

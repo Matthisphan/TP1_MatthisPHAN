@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1);
+
 namespace App\Entity;
 
 use App\Repository\LanguageRepository;
@@ -37,7 +37,7 @@ class Language
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getNom(): ?string
     {
         return $this->name;
     }
