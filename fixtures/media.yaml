@@ -1,0 +1,32 @@
+App\Entity\Media:
+    media (template):
+        shortDescription: 'short desc <current()>'
+        longDescription: 'long desc <current()>'
+        releaseDate: "<dateTimeBetween('-1 week', '+1 week')>"
+        cover_image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNCVtOsNu4Q1d09DbBFYTO83ZYSOMJs_2cRg&s'
+        categories:
+            - '@category_action'
+            - '@category_adventure'
+        languages:
+            - '@language_fr'
+            - '@language_en'
+
+App\Entity\Movie:
+    movie{1..50} (extends media) :
+        title: 'Film <current()> - <name()>'
+
+App\Entity\Serie:
+    serie{1..50} (extends media):
+        title: 'Series <current()> - <name()>'
+
+App\Entity\Season:
+    season{1..50}:
+        number: <numberBetween(1, 10)>
+        serie: '@serie*'
+
+App\Entity\Episode:
+    episode{1..50}:
+        title: '<name()>'
+        duration: <numberBetween(30, 120)>
+        released_at: "<dateTimeBetween('-1 week', '+1 week')>"
+        season: '@season*'
