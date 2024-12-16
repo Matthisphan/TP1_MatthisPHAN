@@ -147,25 +147,33 @@ class AppFixtures extends Fixture
 
         // Ajouter les utilisateurs supplémentaires spécifiques
         $user1 = new User();
-        $user1->setUsername('user1');
-        $user1->setEmail('user1@example.com');
-        $hashedPassword = $this->passwordHasher->hashPassword($user1, 'password123');
+        $user1->setUsername('user');
+        $user1->setEmail('user@user.user');
+        $hashedPassword = $this->passwordHasher->hashPassword($user1, 'user');
         $user1->setPassword($hashedPassword);
         $user1->setRoles(['ROLE_USER']);
         $manager->persist($user1);
 
+        $user1 = new User();
+        $user1->setUsername('matthis');
+        $user1->setEmail('matthisd77@gmail.com');
+        $hashedPassword = $this->passwordHasher->hashPassword($user1, 'password');
+        $user1->setPassword($hashedPassword);
+        $user1->setRoles(['ROLE_ADMIN']);
+        $manager->persist($user1);
+
         $admin = new User();
         $admin->setUsername('admin');
-        $admin->setEmail('admin@example.com');
-        $hashedPassword = $this->passwordHasher->hashPassword($admin, 'adminpassword');
+        $admin->setEmail('admin@admin.admin');
+        $hashedPassword = $this->passwordHasher->hashPassword($admin, 'admin');
         $admin->setPassword($hashedPassword);
         $admin->setRoles(['ROLE_ADMIN']);
         $manager->persist($admin);
 
         $bannedUser = new User();
         $bannedUser->setUsername('banned');
-        $bannedUser->setEmail('banned@example.com');
-        $hashedPassword = $this->passwordHasher->hashPassword($bannedUser, 'bannedpassword');
+        $bannedUser->setEmail('banned@banned.banned');
+        $hashedPassword = $this->passwordHasher->hashPassword($bannedUser, 'banned');
         $bannedUser->setPassword($hashedPassword);
         $bannedUser->setRoles(['ROLE_BANNED']);
         $manager->persist($bannedUser);
